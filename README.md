@@ -6,3 +6,4 @@ This is a little tool I put together to create a PICO-8 game website.<br>
 
 To put this on the web, I would reccomend Github and Netlify.
 Put all the files into Github, then go to Netlify and add a new site. Press 'Import from an existing project,' sign in to github, and select the repo you want to put on the web. Then, you can press Deploy Site at the bottom of the page. Then, you press 'Domain settings,' and go to Custom Domains, and press 'Options' on the current one. Edit it to whatever you want. To have a .com name (or .net, or whatever), you need some money, and I'm not going to put a tutorial for that here.
+You can see the website here: https://pico-8-website-maker.netlify.app
