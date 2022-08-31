@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Make your own PICO-8 Gaming website</title>
+  </head>
+  <body>
+    <script src="template.js"></script>
+    <h2>How to use this tool</h2>
+    <br>
+    <p>
+      This is a little tool I put together to create a PICO-8 game website.<br>
+      To add a game, you must enter in all the information for it, press 'Add game', and voila! A game<br>
+      has been added. To actually have this work, you need to put the game.html and game.js files in the same directory. Then it will work fine.<br><br>
+
+      To put this on the web, I would reccomend <a href='https://github.com'>Github</a> and <a href='https://netlify.app'>Netlify.</a><br>
+      Put all the files into Github (I expect you know how, but <a href="https://docs.github.com/en/get-started/quickstart/hello-world">heres a tutorial</a>), then go to Netlify and add a new <br>site. Press 'Import from an existing project,' sign in to github, and select the repo you <br>want to put on the web. Then, you can press Deploy Site at the bottom of the page.<br> Then, you press 'Domain settings,' and go to Custom Domains, and press 'Options' on the current one. <br>Edit it to whatever you want. To have a .com name (or .net, or whatever), you need some money<br>(I'm not going to put a tutorial for that here).
+    </p>
+    <h2>Landing Page Info</h2>
+    <label>Title</label><br>
+    <input type="text" id="title" value="Title"/>
+    <br>
+    <label>Description</label><br>
+    <textarea id="description">
+      Enter your description here.
+    </textarea>
+    <br>
+    <label>Smaller descriptionn</label><br>
+    <textarea id="sm-description">
+      Enter your smaller description here.
+    </textarea>
+    <br>
+    <label>Background (HEX) <a href="https://htmlcolorcodes.com/color-picker/">(Picker)</a></label><br>
+    <input type="text" id="bgc" value="#ffffff"/>
+    <br>
+    <br>
+    <label for="round">Round Corners (Pixels): </label>
+    <input  type="number" id="round" value="20">
+    <br>
+    <input type="checkbox" id="watermark">
+    <label for="watermark">Watermark</label>
+    <br><br><br>
+    <h2>Add game</h2>
+    <label>Game Title</label><br>
+    <input type="text" id="gametitle" value="Title"/><br>
+    <label>File name (No .html)</label><br>
+    <input type="text" id="gamefile" value="game"/><br>
+    <label>Description</label><br>
+    <textarea id="gamedesc" name="description">Game is so good play now!</textarea><br>
+    <button onclick="addgame()" id="addgame">Add game</button>
+    <br>
+    <br>
+    <br>
+    <h2>Download</h2>
+    <button type="button" onclick="downloadTemplate()">Download</button>
+    <script src="./FileSaver.min.js"></script>
+    <script>
+      games = [];
+      document.getElementById("watermark").checked = true
+      function downloadTemplate() {
+        var title = document.getElementById("title").value;
+        var desc = document.getElementById("description").value;
+        var smdesc = document.getElementById("sm-description").value;
+        var round = document.getElementById("round").value;
+        var watermark = document.getElementById("watermark").checked;
+        var bgc = document.getElementById("bgc").value;
+        save('index.html',gentemplate(title,desc,smdesc,round,watermark,bgc,games));
+      }
+      function addgame() {
+        toadd = [];
+        toadd[0] = document.getElementById('gametitle').value;
+        toadd[1] = document.getElementById("gamefile").value;
+        toadd[2] = document.getElementById('gamedesc').value;
+        games.push(toadd);
+        console.log(games)
+      }
+      function save(filename,text) {
+        var blob = new Blob([text], {
+          type: "text/plain;charset=utf-8",
+        });
+        saveAs(blob,filename);
+      }
+    </script>
+  </body>
+</html>
