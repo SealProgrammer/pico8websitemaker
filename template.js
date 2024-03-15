@@ -74,7 +74,7 @@ function gentemplate(title,desc,smdesc,roundamount,watermark,bgc,games) {
     });
     if(watermark) {
       data += `
-      <a href='https://www.lexaloffle.com/bbs/?uid=68337'>HTML Template by MrAwesome</a>`
+      <a href='https://www.lexaloffle.com/bbs/?uid=68337'>HTML Template by SealProgrammer</a>`
     }
     data +=`
   </center>
